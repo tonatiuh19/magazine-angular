@@ -1,0 +1,17 @@
+.wrapper {
+  height: 100vh;
+  display: flex;
+
+  /* Direction of the items, can be row or column */
+  flex-direction: column;
+}
+
+.header {
+  height: 100%;
+}
+.footer {
+  height: 100%;
+}
+main {
+  flex: 1;
+}
