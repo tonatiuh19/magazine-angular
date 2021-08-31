@@ -1,0 +1,11 @@
+<div class="bg-dark text-white">
+  <div class="container py-5">
+    <div class="row text-dark">
+      <div *ngFor="let item of mainHeaderArr; let i = index" class="col-sm-4">
+        <div class="m-2">
+          <app-card-post [post]="item"></app-card-post>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

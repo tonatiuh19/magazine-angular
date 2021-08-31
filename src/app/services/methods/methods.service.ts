@@ -14,11 +14,35 @@ export class MethodsService extends BaseService {
     super(http);
   }
 
-  getPostTypes(): Observable<any> {
-    return this.doPost(`${this.apiUrl}getPostsTypes.php`, {});
+  getPostTypesNavBar(): Observable<any> {
+    return this.doPost(`${this.apiUrl}getPostTypesNavBar.php`, {});
   }
 
-  getMainPostsByType(): Observable<any> {
-    return this.doPost(`${this.apiUrl}getMainPostsByType.php`, {});
+  getPostHeader(): Observable<any> {
+    return this.doPost(`${this.apiUrl}getPostHeader.php`, {});
+  }
+
+  getMainPostsbyType(id_post_type: number): Observable<any> {
+    return this.doPost(`${this.apiUrl}getMainPostsbyType.php`, {
+      id_post_type: id_post_type,
+    });
+  }
+
+  getMinImage(idPost: number): Observable<any> {
+    return this.doPost(`${this.apiUrl}getMinImage.php`, {
+      id_post: idPost,
+    });
+  }
+
+  getPostsByType(id_post_type: number): Observable<any> {
+    return this.doPost(`${this.apiUrl}getPostsByType.php`, {
+      id_post_type: id_post_type,
+    });
+  }
+
+  getPostContent(id_post: number): Observable<any> {
+    return this.doPost(`${this.apiUrl}getPostContent.php`, {
+      id_post: id_post,
+    });
   }
 }

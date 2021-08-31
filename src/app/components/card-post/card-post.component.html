@@ -1,0 +1,20 @@
+<div class="text-center" *ngIf="loading">
+  <app-loading></app-loading>
+</div>
+<div class="card" *ngIf="!loading" (click)="onClick()">
+  <img [src]="img" class="card-img-top img-fluid" [alt]="title" />
+  <div class="card-body">
+    <h5 class="card-title">{{ title }}</h5>
+    <p class="card-text text-center">
+      <small class="text-muted">
+        <button
+          class="btn btn-outline-dark"
+          [ngStyle]="{ color: type.color }"
+          (click)="goToType()"
+        >
+          <i class="far fa-hand-point-right"></i> {{ type.title }}
+        </button>
+      </small>
+    </p>
+  </div>
+</div>

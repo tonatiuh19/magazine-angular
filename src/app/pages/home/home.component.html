@@ -1,5 +1,11 @@
 <div class="wrapper">
-  <app-header [isHide]="navBarHide"></app-header>
-  <main></main>
+  <app-header [isHide]="navBarHide" (types)="processTypes($event)"></app-header>
+  <main>
+    <app-main-row></app-main-row>
+    <app-secondary-row
+      *ngFor="let item of categories; let i = index"
+      [type]="item.id_post_type"
+    ></app-secondary-row>
+  </main>
   <app-footer></app-footer>
 </div>

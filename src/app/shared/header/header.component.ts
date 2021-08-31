@@ -1,7 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MethodsService } from '../../services/methods/methods.service';
 import { PostTypes } from '../../../interfaces/general.interfaces';
-import { decode_utf8 } from '../../../assets/tools/stringsTreatment';
+import {
+  decode_utf8,
+  removeAccents,
+} from '../../../assets/tools/stringsTreatment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,18 +14,18 @@ import { decode_utf8 } from '../../../assets/tools/stringsTreatment';
 })
 export class HeaderComponent implements OnInit {
   @Input() isHide: boolean = false;
+  @Output() types = new EventEmitter<any[]>();
   categories: PostTypes[] = [];
 
-  constructor(private methodsService: MethodsService) {}
+  constructor(private methodsService: MethodsService, private router: Router) {}
 
   ngOnInit(): void {
     this.getPostTypes();
   }
 
   getPostTypes() {
-    this.methodsService.getPostTypes().subscribe(
+    this.methodsService.getPostTypesNavBar().subscribe(
       (resp) => {
-        console.log(resp);
         for (let i in resp) {
           this.categories.push({
             id_post_type: resp[i].id_post_type,
@@ -29,6 +33,7 @@ export class HeaderComponent implements OnInit {
             active: 0,
           });
         }
+        this.types.emit(this.categories);
       },
       (err) => {
         console.log('Houston', err);
@@ -54,5 +59,11 @@ export class HeaderComponent implements OnInit {
       }
     }
     this.categories = newCategories;
+  }
+
+  goToType(item: any) {
+    this.router.navigate([
+      removeAccents(item.name.replace(/\s/g, '')).toLowerCase(),
+    ]);
   }
 }

@@ -10,12 +10,11 @@ export class HomeComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
 
   navBarHide: boolean = false;
+  categories: [] = [];
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe(({ title }) => {
-      if (title) {
-        console.log('hola', title);
-      }
-    });
+  ngOnInit(): void {}
+
+  processTypes(e: any) {
+    this.categories = e;
   }
 }

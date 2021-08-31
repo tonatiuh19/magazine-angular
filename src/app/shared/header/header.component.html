@@ -1,4 +1,4 @@
-<div [ngClass]="{ headerHide: isHide }" class="header">
+<div [ngClass]="{ headerHide: isHide }">
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><app-logo></app-logo></a>
@@ -23,7 +23,7 @@
             <a
               class="nav-link"
               [ngClass]="item.active === 1 ? 'active' : 'null'"
-              href="#"
+              (click)="goToType(item)"
               >{{ item.name }}</a
             >
           </li>

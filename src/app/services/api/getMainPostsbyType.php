@@ -13,7 +13,9 @@ if($method == 'POST'){
 	if ($params['id_post_type']) {
 		$type = $params['id_post_type'];
 
-		$sql = "SELECT a.id_post, a.titulo, a.date_created, a.id_post_type, a.id_user, a.img from posts as a
+		$sql = "SELECT a.id_post, a.titulo, a.date_created, a.id_post_type, b.name, a.id_user, a.img 
+		from posts as a
+		INNER JOIN posts_type as b on a.id_post_type=b.id_post_type
         WHERE a.id_post_type=".$type." AND a.active = 1
         ORDER BY date_created DESC
         LIMIT 4";
